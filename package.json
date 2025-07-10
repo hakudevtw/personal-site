@@ -14,12 +14,16 @@
     "packages/*"
   ],
   "scripts": {
+    "lint": "ultracite lint",
+    "format": "ultracite format",
     "clean": "git clean -xdf node_modules"
   },
   "dependencies": {},
   "devDependencies": {
+    "@biomejs/biome": "2.0.6",
     "@repo/typescript-config": "workspace:*",
+    "@types/node": "22",
     "typescript": "^5.8.3",
-    "@types/node": "22"
+    "ultracite": "5.0.32"
   }
 }
