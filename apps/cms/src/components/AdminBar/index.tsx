@@ -1,18 +1,19 @@
-'use client'
+'use client';
 
-import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar'
+import type {
+  PayloadAdminBarProps,
+  PayloadMeUser,
+} from '@payloadcms/admin-bar';
+import { PayloadAdminBar } from '@payloadcms/admin-bar';
+import { useRouter, useSelectedLayoutSegments } from 'next/navigation';
+import React, { useState } from 'react';
+import { cn } from '@/utilities/ui';
 
-import { cn } from '@/utilities/ui'
-import { useSelectedLayoutSegments } from 'next/navigation'
-import { PayloadAdminBar } from '@payloadcms/admin-bar'
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import './index.scss';
 
-import './index.scss'
+import { getClientSideURL } from '@/utilities/getURL';
 
-import { getClientSideURL } from '@/utilities/getURL'
-
-const baseClass = 'admin-bar'
+const baseClass = 'admin-bar';
 
 const collectionLabels = {
   pages: {
@@ -27,28 +28,30 @@ const collectionLabels = {
     plural: 'Projects',
     singular: 'Project',
   },
-}
+};
 
-const Title: React.FC = () => <span>Dashboard</span>
+const Title: React.FC = () => <span>Dashboard</span>;
 
 export const AdminBar: React.FC<{
-  adminBarProps?: PayloadAdminBarProps
+  adminBarProps?: PayloadAdminBarProps;
 }> = (props) => {
-  const { adminBarProps } = props || {}
-  const segments = useSelectedLayoutSegments()
-  const [show, setShow] = useState(false)
+  const { adminBarProps } = props || {};
+  const segments = useSelectedLayoutSegments();
+  const [show, setShow] = useState(false);
   const collection = (
-    collectionLabels[segments?.[1] as keyof typeof collectionLabels] ? segments[1] : 'pages'
-  ) as keyof typeof collectionLabels
-  const router = useRouter()
+    collectionLabels[segments?.[1] as keyof typeof collectionLabels]
+      ? segments[1]
+      : 'pages'
+  ) as keyof typeof collectionLabels;
+  const router = useRouter();
 
   const onAuthChange = React.useCallback((user: PayloadMeUser) => {
-    setShow(Boolean(user?.id))
-  }, [])
+    setShow(Boolean(user?.id));
+  }, []);
 
   return (
     <div
-      className={cn(baseClass, 'py-2 bg-black text-white', {
+      className={cn(baseClass, 'bg-black py-2 text-white', {
         block: show,
         hidden: !show,
       })}
@@ -63,18 +66,18 @@ export const AdminBar: React.FC<{
             user: 'text-white',
           }}
           cmsURL={getClientSideURL()}
-          collectionSlug={collection}
           collectionLabels={{
             plural: collectionLabels[collection]?.plural || 'Pages',
             singular: collectionLabels[collection]?.singular || 'Page',
           }}
+          collectionSlug={collection}
           logo={<Title />}
           onAuthChange={onAuthChange}
           onPreviewExit={() => {
             fetch('/next/exit-preview').then(() => {
-              router.push('/')
-              router.refresh()
-            })
+              router.push('/');
+              router.refresh();
+            });
           }}
           style={{
             backgroundColor: 'transparent',
@@ -85,5 +88,5 @@ export const AdminBar: React.FC<{
         />
       </div>
     </div>
-  )
-}
+  );
+};
