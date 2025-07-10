@@ -16,10 +16,10 @@
   "scripts": {
     "clean": "git clean -xdf node_modules"
   },
-  "dependencies": {
-    "@types/node": "22"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "^5.8.3",
+    "@types/node": "22"
   }
 }
