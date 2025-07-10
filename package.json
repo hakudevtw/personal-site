@@ -14,8 +14,12 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
     "lint": "ultracite lint",
     "format": "ultracite format",
+    "test": "turbo test",
+    "analyze": "turbo analyze",
     "clean": "git clean -xdf node_modules"
   },
   "dependencies": {},
@@ -23,6 +27,7 @@
     "@biomejs/biome": "2.0.6",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "22",
+    "turbo": "^2.5.4",
     "typescript": "^5.8.3",
     "ultracite": "5.0.32"
   }
