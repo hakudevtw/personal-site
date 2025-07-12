@@ -3,19 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev -p 3001 --turbopack",
     "build": "next build",
     "start": "next start",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "next": "15.3.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.5"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@repo/next-config": "workspace:*",
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
